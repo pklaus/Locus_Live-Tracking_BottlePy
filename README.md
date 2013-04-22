@@ -3,7 +3,7 @@
 This is a web api based on bottle.py to store location
 information generated using Locus Map Pro Live-Tracking.
 
-Up to now this is not much more that a proof of concept.
+Up to now this is not much more than a proof of concept.
 
 **What works:** You can run the `./app.py` file in this project
 and set up Locus on your Android phone to POST to the URL
