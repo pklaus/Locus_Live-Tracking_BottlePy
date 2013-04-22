@@ -19,6 +19,13 @@ More is to be included in the [ToDo list](TODO.md).
 More information on the Live-Tracking feature of Locus Map Pro can be found on
 [its documentation web page](http://docs.locusmap.eu/doku.php/manual:live_tracking).
 
+### Alternatives
+
+* Easy via Google Docs: <http://docs.locusmap.eu/doku.php/manual:live_tracking_google_docs>
+* More interfaces and ideas on <http://forum.locusmap.eu/viewtopic.php?f=44&t=2061>
+* Another Service using Django, Bing and Leaflet: <http://vapiti.lnet.fi/LocusTracker/>
+* A commercial service livetrack24 with Locus: <http://forum.locusmap.eu/viewtopic.php?f=26&t=2628>
+
 ### Requirements
 
 This web app runs on Python 3.3, [Bottle][] and [CherryPy][].
