@@ -84,5 +84,5 @@ def index():
 
 run(interface, host='0.0.0.0', port=8080, debug=True, reloader=True)
 # CherryPy is Python3 ready and has IPv6 support:
-#run(host='::', server='cherrypy', port=8080)
+#run(interface, host='::', server='cherrypy', port=8080)
 
