@@ -95,8 +95,13 @@ def static(path):
     return static_file(path, root='./static')
 
 @interface.route('/')
+@view('home.jinja2')
+def home():
+    return dict()
+
+@interface.route('/entire-history')
 @view('events.jinja2')
-def index():
+def entire_history():
     return dict(events=[events[key] for key in events])
 
 @interface.route('/latest')
