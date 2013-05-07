@@ -1,0 +1,14 @@
+table { border-collapse: collapse; }
+table, td, th { border:1px solid green; }
+td { padding:15px; }
+th {
+  background-color:green;
+  color:white;
+}
+th[data-sort]{
+  cursor:pointer;
+}
+
+#footer {
+  margin: 30px auto 2px auto;
+}

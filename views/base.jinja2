@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/stupidtable.min.js"></script>
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <title>{% block title %}{% endblock %} - Locus Live-Tracking for BottlePy</title>
+    {% endblock %}
+</head>
+<body>
+    <div id="content">{% block content %}{% endblock %}</div>
+    <div id="footer">
+        {% block footer %}
+        Powered by <a href="https://github.com/pklaus/Locus_Live-Tracking_BottlePy">Locus_Live-Tracking_BottlePy</a>.
+        {% endblock %}
+    </div>
+</body>
+</html>
+

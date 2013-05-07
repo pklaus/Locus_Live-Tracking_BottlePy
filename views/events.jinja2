@@ -1,0 +1,43 @@
+{% extends "base.jinja2" %}
+
+{% block title %}All Events{% endblock %}
+
+{% block content %}
+  <h2>All Events</h2>
+  {% if events %}
+  <table id="events">
+    <thead>
+      <tr>
+        <th data-sort="string">IP</th>
+        <th data-sort="string">Time</th>
+        <th data-sort="float">Speed</th>
+        <th data-sort="float">Latitude</th>
+        <th data-sort="float">Longitude</th>
+        <th>Link</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for event in events %}
+      <tr>
+        <td>{{ event.ip }}</td>
+        <td>{{ event.server_time|unixtime_to_iso8601 }}</td>
+        <td>{{ event.speed }}</td>
+        <td>{{ event.lat }}</td>
+        <td>{{ event.lon }}</td>
+        <td><a href="http://www.openstreetmap.org/?mlat={{ event.lat }}&mlon={{ event.lon }}&zoom=14">OSM</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <script>
+    $(function(){
+      $("#events").stupidtable();
+    });
+  </script>
+  {% else %}
+  <p>No events available.</p>
+  {% endif %}
+{% endblock %}
+
+
+
