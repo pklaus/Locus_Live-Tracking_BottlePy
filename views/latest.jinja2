@@ -1,0 +1,23 @@
+{% extends "base.jinja2" %}
+
+{% block title %}Latest Location{% endblock %}
+
+{% block content %}
+  <h2>Latest Location</h2>
+    {% if event %}
+      <ul>
+        <li>Date and Time: {{ event.server_time|unixtime_to_iso8601|replace('T',' ') }}</li>
+        <li>Accuracy: {{ event.acc }} m</li>
+        <li>Speed: {{ event.speed }} m/s</li>
+        <li>Latitude: {{ event.lat }} ° N</li>
+        <li>Longitude: {{ event.lon }} ° E</li>
+        <li>Altitude: {{ event.alt }} m</li>
+        <li>Link: <a href="http://www.openstreetmap.org/?mlat={{ event.lat }}&mlon={{ event.lon }}&zoom=14">OSM</a></li>
+      </ul>
+    {% else %}
+      <p>No location available.</p>
+    {% endif %}
+{% endblock %}
+
+
+

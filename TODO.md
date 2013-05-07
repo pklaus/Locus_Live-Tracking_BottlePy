@@ -9,6 +9,4 @@ Next steps to work on:
   * to identify the current mission (or track name)
 * Parsing the following parameters as floating point numbers:  
   acc, alt, bearing, time, speed
-* Create another dictionary that points to the latest event for each user
-  Can be updated on startup and when events are being posted.
 

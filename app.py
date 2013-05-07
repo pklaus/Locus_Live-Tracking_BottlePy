@@ -45,6 +45,20 @@ api = Bottle()
 def home():
     return 'Locus Live-Tracking via Bottle for Python'
 
+latest = dict()
+def update_latest(event):
+    try:
+        name = event['name']
+    except:
+        name = 'noname'
+    try:
+        latest[name]
+    except:
+        latest[name] = dict(id=None, server_time=0)
+    if latest[name]['server_time'] < events[key]['server_time']:
+        latest[name]['id'] = events[key]['id']
+        latest[name]['server_time'] = events[key]['server_time']
+
 @api.post('/event')
 def store_event():
     event = dict() # we store the event's details in a dictionary
@@ -64,6 +78,7 @@ def store_event():
     event['ip'] = request.remote_addr
     # store the event in the SQlite based dictionary
     events[event['id']] = event
+    update_latest(event)
     return 'Success!'
 
 @api.get('/events')
@@ -84,6 +99,15 @@ def static(path):
 def index():
     return dict(events=[events[key] for key in events])
 
+@interface.route('/latest')
+@interface.route('/latest/')
+@interface.route('/latest/<name:path>')
+@view('latest.jinja2')
+def show_latest(name='noname'):
+    if name not in latest:
+        abort(404, 'Name not found.')
+    return dict(event=events[latest[name]['id']])
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser( 
       description='Start a server to store location information.' )
@@ -99,6 +123,8 @@ if __name__ == '__main__':
     if args.debug and args.ipv6:
         args.error('You cannot use IPv6 in debug mode, sorry.')
     events = filedict.FileDict(filename=args.db_file)
+    for key in events:
+        update_latest(events[key])
     if args.debug:
         run(interface, host='0.0.0.0', port=args.port, debug=True, reloader=True)
     else:
