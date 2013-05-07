@@ -55,9 +55,8 @@ def update_latest(event):
         latest[name]
     except:
         latest[name] = dict(id=None, server_time=0)
-    if latest[name]['server_time'] < events[key]['server_time']:
-        latest[name]['id'] = events[key]['id']
-        latest[name]['server_time'] = events[key]['server_time']
+    if latest[name]['server_time'] < event['server_time']:
+        latest[name] = dict(id=event['id'], server_time = event['server_time'])
 
 @api.post('/event')
 def store_event():
