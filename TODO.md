@@ -9,4 +9,8 @@ Next steps to work on:
   * to identify the current mission (or track name)
 * Parsing the following parameters as floating point numbers:  
   acc, alt, bearing, time, speed
+* Implement CLI with params for
+  * debug
+  * IPv6
+  * db file
 
