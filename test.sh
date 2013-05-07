@@ -12,4 +12,4 @@ wget \
   -O - \
   --post-data \
   "lat=$LAT&lon=$LON&alt=$ALT&speed=$SPEED&acc=$ACC&bearing=$BEARING&time=$TIME" \
-  http://localhost:8080/event
+  http://localhost:8080/api/event
