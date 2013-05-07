@@ -1,7 +1,9 @@
 table { border-collapse: collapse; }
-table, td, th { border:1px solid green; }
-td { padding:15px; }
+table, td { border:1px solid green; }
+th { border:1px solid white; }
+td { padding: 7px 9px; }
 th {
+  padding: 4px 6px;
   background-color:green;
   color:white;
 }

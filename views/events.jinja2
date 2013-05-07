@@ -1,9 +1,9 @@
 {% extends "base.jinja2" %}
 
-{% block title %}All Events{% endblock %}
+{% block title %}Location History{% endblock %}
 
 {% block content %}
-  <h2>All Events</h2>
+  <h2>Entire Location History</h2>
   {% if events %}
   <table id="events">
     <thead>
@@ -20,7 +20,7 @@
       {% for event in events %}
       <tr>
         <td>{{ event.ip }}</td>
-        <td>{{ event.server_time|unixtime_to_iso8601 }}</td>
+        <td>{{ event.server_time|unixtime_to_iso8601|replace('T',' ') }}</td>
         <td>{{ event.speed }}</td>
         <td>{{ event.lat }}</td>
         <td>{{ event.lon }}</td>
