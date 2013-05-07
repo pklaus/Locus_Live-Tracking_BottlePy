@@ -28,10 +28,11 @@ More information on the Live-Tracking feature of Locus Map Pro can be found on
 
 ### Requirements
 
-This web app runs on Python 3.3, [Bottle][] and [CherryPy][].
+This web app runs on Python 3.3, [Bottle][] with [Jinja2][] and [CherryPy][].
 Also it includes a version of [FileDict][].
 
 [Bottle]: http://bottlepy.org
 [CherryPy]: http://www.cherrypy.org/
+[Jinja2]: http://jinja.pocoo.org/
 [FileDict]: https://github.com/pklaus/filedict/tree/threadsafe
 
