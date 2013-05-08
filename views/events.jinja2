@@ -2,6 +2,25 @@
 
 {% block title %}Location History{% endblock %}
 
+{% block head %}
+    {{ super() }}
+    <script type="text/javascript" src="/static/js/stupidtable.min.js"></script>
+    <style type="text/css">
+      table { border-collapse: collapse; }
+      table, td { border:1px solid green; }
+      th { border:1px solid white; }
+      td { padding: 7px 9px; }
+      th {
+        padding: 4px 6px;
+        background-color:green;
+        color:white;
+      }
+      th[data-sort]{
+        cursor:pointer;
+      }
+    </style>
+{% endblock %}
+
 {% block content %}
   <h2>Entire Location History</h2>
   {% if events %}
