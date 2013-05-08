@@ -34,7 +34,7 @@
           var map = L.map('map').setView([{{ event.lat }}, {{ event.lon }}], 13);
           L.tileLayer(OSM_URL, {attribution: OSM_ATTRIB}).addTo(map);
           var marker = L.marker([{{ event.lat }}, {{ event.lon }}]).addTo(map);
-          marker.bindPopup("<b>Current position:</b><br />{{ event.lat }} N, {{ event.lon }} E");
+          marker.bindPopup("<b>Latest Location:</b><br />{{ event.lat }} N, {{ event.lon }} E");
         });
       </script>
     {% else %}
