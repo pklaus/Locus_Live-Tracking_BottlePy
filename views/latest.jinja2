@@ -2,6 +2,18 @@
 
 {% block title %}Latest Location{% endblock %}
 
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="/static/leaflet-0.5/leaflet.css" />
+    <!--[if lte IE 8]>
+      <link rel="stylesheet" href="/static/leaflet-0.5/leaflet.ie.css" />
+    <![endif]-->
+    <script src="/static/leaflet-0.5/leaflet.js"></script>
+    <style type="text/css">
+      #map { height: 350px; }
+    </style>
+{% endblock %}
+
 {% block content %}
   <h2>Latest Location</h2>
     {% if event %}
@@ -14,6 +26,17 @@
         <li>Altitude: {{ event.alt }} m</li>
         <li>Link: <a href="http://www.openstreetmap.org/?mlat={{ event.lat }}&mlon={{ event.lon }}&zoom=14">OSM</a></li>
       </ul>
+      <div id="map"></div>
+      <script>
+        $(function(){
+          OSM_URL = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+          OSM_ATTRIB = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+          var map = L.map('map').setView([{{ event.lat }}, {{ event.lon }}], 13);
+          L.tileLayer(OSM_URL, {attribution: OSM_ATTRIB}).addTo(map);
+          var marker = L.marker([{{ event.lat }}, {{ event.lon }}]).addTo(map);
+          marker.bindPopup("<b>Current position:</b><br />{{ event.lat }} N, {{ event.lon }} E");
+        });
+      </script>
     {% else %}
       <p>No location available.</p>
     {% endif %}
