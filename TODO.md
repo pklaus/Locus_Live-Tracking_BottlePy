@@ -9,4 +9,6 @@ Next steps to work on:
   * to identify the current mission (or track name)
 * Parsing the following parameters as floating point numbers:  
   acc, alt, bearing, time, speed
+* Show last 48h as a [Polyline](http://leafletjs.com/reference.html#polyline)
+  on the map.
 
