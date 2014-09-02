@@ -18,5 +18,4 @@ The next steps to work on could be the following:
   The API call to POST an /event could store more parameters:
   * user name
   * current mission / track
-  * The new fields in Locus: battery, gsm_sign
 

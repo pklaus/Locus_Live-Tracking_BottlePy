@@ -33,6 +33,8 @@
         <th data-sort="float">Latitude</th>
         <th data-sort="float">Longitude</th>
         <th data-sort="float">Altitude</th>
+        <th data-sort="float">Battery</th>
+        <th data-sort="float">GSM Signal</th>
         <th>Link</th>
       </tr>
     </thead>
@@ -45,6 +47,8 @@
         <td>{{ event.lat }}</td>
         <td>{{ event.lon }}</td>
         <td>{{ event.alt }}</td>
+        <td>{{ event.battery }}</td>
+        <td>{{ event.gsm_sign }}</td>
         <td><a href="http://www.openstreetmap.org/?mlat={{ event.lat }}&mlon={{ event.lon }}&zoom=14">OSM</a></td>
       </tr>
       {% endfor %}

@@ -24,6 +24,8 @@
         <li>Latitude: {{ event.lat }} ° N</li>
         <li>Longitude: {{ event.lon }} ° E</li>
         <li>Altitude: {{ event.alt }} m</li>
+        <li>Battery: {{ event.battery }} %</li>
+        <li>GSM Signal: {{ event.gsm_sign }} %</li>
         <li>Link: <a href="http://www.openstreetmap.org/?mlat={{ event.lat }}&mlon={{ event.lon }}&zoom=14">OSM</a></li>
       </ul>
       <div id="map"></div>
