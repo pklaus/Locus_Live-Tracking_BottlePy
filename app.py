@@ -17,8 +17,8 @@ import argparse
 
 TEMPLATE_PATH.append(os.path.join(os.path.split(os.path.realpath(__file__))[0],'views'))
 DEFAULT_DB_FILE = os.path.join(os.path.split(os.path.realpath(__file__))[0],"data/events.dict.sqlite")
-
-events = dict()
+LATEST = dict()
+EVENTS = dict()
 
 filter_dict = {}
 view = partial(jinja2_view,
@@ -45,7 +45,6 @@ api = Bottle()
 def home():
     return 'Locus Live-Tracking via Bottle for Python'
 
-LATEST = dict()
 def update_latest(event):
     try:
         name = event['name']
@@ -76,14 +75,14 @@ def store_event():
     event['server_time'] = unixtime()
     event['ip'] = request.remote_addr
     # store the event in the SQlite based dictionary
-    events[event['id']] = event
+    EVENTS[event['id']] = event
     update_latest(event)
     return 'Success!'
 
 @api.get('/events')
 def dump_events():
     response.headers['Content-Type'] = 'text/plain; charset=UTF8'
-    evs = [events[key] for key in events]
+    evs = [EVENTS[key] for key in EVENTS]
     return pprint.pformat(evs)
 
 interface = Bottle()
@@ -101,7 +100,7 @@ def home():
 @interface.route('/entire-history')
 @view('events.jinja2')
 def entire_history():
-    return dict(events=[events[key] for key in events])
+    return dict(events=[EVENTS[key] for key in EVENTS])
 
 @interface.route('/latest')
 @interface.route('/latest/')
@@ -110,7 +109,7 @@ def entire_history():
 def show_latest(name='noname'):
     if not LATEST or name not in LATEST:
         return dict(event=None)
-    return dict(event=events[latest[name]['id']])
+    return dict(event=EVENTS[LATEST[name]['id']])
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser( 
@@ -126,9 +125,9 @@ if __name__ == '__main__':
     args = parser.parse_args()
     if args.debug and args.ipv6:
         args.error('You cannot use IPv6 in debug mode, sorry.')
-    events = filedict.FileDict(filename=args.db_file)
-    for key in events:
-        update_latest(events[key])
+    EVENTS = filedict.FileDict(filename=args.db_file)
+    for key in EVENTS:
+        update_latest(EVENTS[key])
     if args.debug:
         run(interface, host='0.0.0.0', port=args.port, debug=True, reloader=True)
     else:
