@@ -120,6 +120,8 @@ if __name__ == '__main__':
       help='Listen to incoming connections via IPv6 instead of IPv4.')
     parser.add_argument('-d', '--debug', action='store_true',
       help='Start in debug mode (with verbose HTTP error pages.')
+    parser.add_argument('-l', '--log-file',
+      help='The file to store the server log in.')
     parser.add_argument('-b', '--db-file', default=DEFAULT_DB_FILE,
       help='The db to store the location information in.')
     args = parser.parse_args()
@@ -128,6 +130,14 @@ if __name__ == '__main__':
     EVENTS = filedict.FileDict(filename=args.db_file)
     for key in EVENTS:
         update_latest(EVENTS[key])
+    if args.log_file:
+        try:
+            from requestlogger import WSGILogger, ApacheFormatter
+            from logging.handlers import TimedRotatingFileHandler
+            handlers = [ TimedRotatingFileHandler(args.log_file, 'd', 7) , ]
+            interface = WSGILogger(interface, handlers, ApacheFormatter())
+        except ImportError:
+            print('Missing module wsgi-request-logger. Cannot enable logging.')
     if args.debug:
         run(interface, host='0.0.0.0', port=args.port, debug=True, reloader=True)
     else:
