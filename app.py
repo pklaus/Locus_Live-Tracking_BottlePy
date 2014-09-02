@@ -45,18 +45,18 @@ api = Bottle()
 def home():
     return 'Locus Live-Tracking via Bottle for Python'
 
-latest = dict()
+LATEST = dict()
 def update_latest(event):
     try:
         name = event['name']
     except:
         name = 'noname'
     try:
-        latest[name]
+        LATEST[name]
     except:
-        latest[name] = dict(id=None, server_time=0)
-    if latest[name]['server_time'] < event['server_time']:
-        latest[name] = dict(id=event['id'], server_time = event['server_time'])
+        LATEST[name] = dict(id=None, server_time=0)
+    if LATEST[name]['server_time'] < event['server_time']:
+        LATEST[name] = dict(id=event['id'], server_time = event['server_time'])
 
 @api.post('/event')
 def store_event():
@@ -108,7 +108,7 @@ def entire_history():
 @interface.route('/latest/<name:path>')
 @view('latest.jinja2')
 def show_latest(name='noname'):
-    if name not in latest:
+    if name not in LATEST:
         abort(404, 'Name not found.')
     return dict(event=events[latest[name]['id']])
 
