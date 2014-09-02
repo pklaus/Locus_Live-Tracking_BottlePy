@@ -65,10 +65,18 @@ def store_event():
         event['lon'] = float(request.forms.getunicode('lon'))
     except:
         abort('Please provide at least lat and lon parameters.')
-    keys = ['alt', 'speed', 'acc', 'bearing', 'time', 'battery', 'gsm_sign']
+    # All values that should be converted to float:
+    keys = ['alt', 'speed', 'acc', 'bearing', 'time', 'battery']
     for key in keys:
         try:
             event[key] = float(request.forms.getunicode(key))
+        except:
+            pass
+    # All values that should be left as string:
+    keys = ['gsm_sign']
+    for key in keys:
+        try:
+            event[key] = request.forms.getunicode(key).strip()
         except:
             pass
     event['id'] = create_id()
