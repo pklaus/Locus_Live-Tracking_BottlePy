@@ -21,6 +21,7 @@ More information on the Live-Tracking feature of Locus Map Pro can be found on
 ### Alternatives
 
 * Easy via Google Docs: <http://docs.locusmap.eu/doku.php/manual:live_tracking_google_docs>
+* A minimalist implementation in Perl using Leaflet: <https://github.com/Cyclenerd/Latrine>
 * More interfaces and ideas on <http://forum.locusmap.eu/viewtopic.php?f=44&t=2061>
 * Another Service using Django, Bing and Leaflet: <http://vapiti.lnet.fi/LocusTracker/>
 * The commercial service *livetrack24* with Locus: <http://forum.locusmap.eu/viewtopic.php?f=26&t=2628>
