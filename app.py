@@ -87,7 +87,7 @@ def dump_events():
     return pprint.pformat(evs)
 
 interface = Bottle()
-interface.mount(api, '/api')
+interface.mount('/api', api)
 
 @interface.route('/static/<path:path>')
 def static(path):
