@@ -7,8 +7,6 @@ Next steps to work on:
 * The API call to POST an /event should include more parameters:
   * to identify the user
   * to identify the current mission (or track name)
-* Parsing the following parameters as floating point numbers:  
-  acc, alt, bearing, time, speed
 * Show last 48h as a [Polyline](http://leafletjs.com/reference.html#polyline)
   on the map.
 

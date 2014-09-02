@@ -61,14 +61,14 @@ def update_latest(event):
 def store_event():
     event = dict() # we store the event's details in a dictionary
     try:
-        event['lat'] = float(request.forms.getunicode('lat').strip())
-        event['lon'] = float(request.forms.getunicode('lon').strip())
+        event['lat'] = float(request.forms.getunicode('lat'))
+        event['lon'] = float(request.forms.getunicode('lon'))
     except:
         abort('Please provide at least lat and lon parameters.')
     keys = ['alt', 'speed', 'acc', 'bearing', 'time']
     for key in keys:
         try:
-            event[key] = request.forms.getunicode(key).strip()
+            event[key] = float(request.forms.getunicode(key))
         except:
             pass
     event['id'] = create_id()
