@@ -108,6 +108,8 @@ def entire_history():
 @interface.route('/latest/<name:path>')
 @view('latest.jinja2')
 def show_latest(name='noname'):
+    if not LATEST:
+        abort(501, 'No "latest" entry exists so far.')
     if name not in LATEST:
         abort(404, 'Name not found.')
     return dict(event=events[latest[name]['id']])
