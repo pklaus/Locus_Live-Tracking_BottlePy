@@ -31,10 +31,16 @@
       <div id="map"></div>
       <script>
         $(function(){
+          CM_URL = 'http://{s}.tile.cloudmade.com/83956be84ed943009b9fa582c4e8d7a4/{styleId}/256/{z}/{x}/{y}.png';
+          CM_ATTR = 'Map data &copy; ' +
+            '<a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+            '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+            'Imagery © <a href="http://cloudmade.com">CloudMade</a>';
           OSM_URL = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
           OSM_ATTRIB = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors';
           var map = L.map('map').setView([{{ event.lat }}, {{ event.lon }}], 13);
-          L.tileLayer(OSM_URL, {attribution: OSM_ATTRIB}).addTo(map);
+          L.tileLayer(CM_URL, {attribution: CM_ATTR, styleId: 997, detectRetina: true}).addTo(map);
+          //L.tileLayer(OSM_URL, {attribution: OSM_ATTRIB, detectRetina: true}).addTo(map);
           var marker = L.marker([{{ event.lat }}, {{ event.lon }}]).addTo(map);
           marker.bindPopup("<b>Latest Location:</b><br />{{ event.lat }} N, {{ event.lon }} E");
         });
