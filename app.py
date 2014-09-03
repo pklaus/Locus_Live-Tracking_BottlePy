@@ -19,6 +19,7 @@ TEMPLATE_PATH.append(os.path.join(os.path.split(os.path.realpath(__file__))[0],'
 DEFAULT_DB_FILE = os.path.join(os.path.split(os.path.realpath(__file__))[0],"data/events.dict.sqlite")
 LATEST = dict()
 EVENTS = dict()
+NONAME = '_-_noname_-_'
 
 filter_dict = {}
 view = partial(jinja2_view,
@@ -49,7 +50,7 @@ def update_latest(event):
     try:
         name = event['name']
     except:
-        name = 'noname'
+        name = NONAME
     try:
         LATEST[name]
     except:
@@ -114,7 +115,7 @@ def entire_history():
 @interface.route('/latest/')
 @interface.route('/latest/<name:path>')
 @view('latest.jinja2')
-def show_latest(name='noname'):
+def show_latest(name=NONAME):
     if not LATEST or name not in LATEST:
         return dict(event=None)
     return dict(event=EVENTS[LATEST[name]['id']])
