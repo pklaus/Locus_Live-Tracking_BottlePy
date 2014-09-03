@@ -28,11 +28,11 @@
     <thead>
       <tr>
         <th data-sort="string">Time</th>
-        <th data-sort="float">Accuracy</th>
-        <th data-sort="float">Speed</th>
         <th data-sort="float">Latitude</th>
         <th data-sort="float">Longitude</th>
         <th data-sort="float">Altitude</th>
+        <th data-sort="float">Speed</th>
+        <th data-sort="float">Accuracy</th>
         <th data-sort="float">Battery</th>
         <th data-sort="float">GSM Signal</th>
         <th>Link</th>
@@ -42,11 +42,11 @@
       {% for event in events %}
       <tr>
         <td>{{ event.server_time|unixtime_to_iso8601|replace('T',' ') }}</td>
-        <td>{{ event.acc }}</td>
-        <td>{{ event.speed }}</td>
         <td>{{ event.lat }}</td>
         <td>{{ event.lon }}</td>
         <td>{{ event.alt }}</td>
+        <td>{{ event.speed }}</td>
+        <td>{{ event.acc }}</td>
         <td>{{ event.battery }}</td>
         <td>{{ event.gsm_signal }}</td>
         <td><a href="http://www.openstreetmap.org/?mlat={{ event.lat }}&mlon={{ event.lon }}&zoom=14">OSM</a></td>
