@@ -9,7 +9,7 @@ import time
 import os
 import pprint
 from functools import partial
-from datetime import datetime
+from datetime import datetime, date, time as dtime
 from random import choice
 import string
 import re
@@ -126,6 +126,31 @@ def show_latest(name=NONAME):
     if not LATEST or name not in LATEST:
         return dict(event=None)
     return dict(event=EVENTS[LATEST[name]['id']])
+
+@interface.route('/day/<year:int>-<month:int>-<day:int>')
+@view('day.jinja2')
+def show_day(year, month, day):
+    d = date(year, month, day)
+    unix_lower = int(datetime.combine(d, dtime( 0,  0,  0)).strftime('%s'))
+    unix_upper = int(datetime.combine(d, dtime(23, 59, 59)).strftime('%s'))
+    events = []
+    min_lat, min_lon = 400., 400.
+    max_lat, max_lon = 0., 0.
+    for key in EVENTS:
+        event = EVENTS[key]
+        if event['server_time'] >= unix_lower and event['server_time'] <= unix_upper:
+            events.append(event)
+            min_lat = min(min_lat, event['lat'])
+            min_lon = min(min_lon, event['lon'])
+            max_lat = max(max_lat, event['lat'])
+            max_lon = max(max_lon, event['lon'])
+    if len(events):
+        center_lat = (max_lat + min_lat)/2
+        center_lon = (max_lon + min_lon)/2
+    else:
+        center_lat = 50.1
+        center_lon = 8.6
+    return {'date': d, 'events': events, 'lat': center_lat, 'lon': center_lon}
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser( 

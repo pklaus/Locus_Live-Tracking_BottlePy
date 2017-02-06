@@ -1,0 +1,51 @@
+{% extends "base.jinja2" %}
+
+{% block title %}Day{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="/static/leaflet-0.5/leaflet.css" />
+    <!--[if lte IE 8]>
+      <link rel="stylesheet" href="/static/leaflet-0.5/leaflet.ie.css" />
+    <![endif]-->
+    <script src="/static/leaflet-0.5/leaflet.js"></script>
+    <style type="text/css">
+      #map { height: 350px; }
+    </style>
+{% endblock %}
+
+{% block content %}
+  <h2>Day {{ date }}</h2>
+  <p>Data points for this day: {{ events | length}}</p>
+  <div id="map"></div>
+  <script>
+    $(function(){
+      CM_URL = 'http://{s}.tile.cloudmade.com/83956be84ed943009b9fa582c4e8d7a4/{styleId}/256/{z}/{x}/{y}.png';
+      CM_ATTR = 'Map data &copy; ' +
+        '<a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+        '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+        'Imagery © <a href="http://cloudmade.com">CloudMade</a>';
+      OSM_URL = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+      OSM_ATTRIB = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+      var map = L.map('map').setView([{{lat}}, {{lon}}], 9);
+      L.tileLayer(CM_URL, {attribution: CM_ATTR, styleId: 997, detectRetina: true}).addTo(map);
+      //L.tileLayer(OSM_URL, {attribution: OSM_ATTRIB, detectRetina: true}).addTo(map);
+
+      var polylinePoints = [
+        {% for event in events %}
+        new L.LatLng({{event.lat}}, {{event.lon}}),
+        {% endfor %}
+      ];
+      var polyline = new L.Polyline(polylinePoints, {
+          color: 'red',
+          weight: 3,
+          opacity: 0.5,
+          smoothFactor: 1
+      });
+      polyline.addTo(map);
+    });
+  </script>
+{% endblock %}
+
+
+
