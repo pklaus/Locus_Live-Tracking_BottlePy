@@ -28,8 +28,8 @@
       OSM_URL = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
       OSM_ATTRIB = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors';
       var map = L.map('map').setView([{{lat}}, {{lon}}], 9);
-      L.tileLayer(CM_URL, {attribution: CM_ATTR, styleId: 997, detectRetina: true}).addTo(map);
-      //L.tileLayer(OSM_URL, {attribution: OSM_ATTRIB, detectRetina: true}).addTo(map);
+      //L.tileLayer(CM_URL, {attribution: CM_ATTR, styleId: 997, detectRetina: true}).addTo(map);
+      L.tileLayer(OSM_URL, {attribution: OSM_ATTRIB, detectRetina: true}).addTo(map);
 
       var polylinePoints = [
         {% for event in events %}
