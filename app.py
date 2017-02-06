@@ -80,6 +80,13 @@ def store_event():
             event[key] = request.forms.getunicode(key).strip()
         except:
             pass
+    # All values that should be left as string:
+    keys = ['name', 'track']
+    for key in keys:
+        try:
+            event[key] = request.forms.getunicode(key).strip()
+        except:
+            pass
     event['id'] = create_id()
     event['server_time'] = unixtime()
     event['ip'] = request.remote_addr
