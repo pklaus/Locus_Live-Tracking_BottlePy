@@ -127,6 +127,12 @@ def show_latest(name=NONAME):
         return dict(event=None)
     return dict(event=EVENTS[LATEST[name]['id']])
 
+@interface.route('/latest_day')
+def latest_day(name=NONAME):
+    latest = EVENTS[LATEST[name]['id']]
+    d = datetime.utcfromtimestamp(latest['server_time']).date()
+    redirect('day/'+d.isoformat())
+
 @interface.route('/day/<year:int>-<month:int>-<day:int>')
 @view('day.jinja2')
 def show_day(year, month, day):
