@@ -30,6 +30,7 @@
       var map = L.map('map').setView([{{lat}}, {{lon}}], 9);
       //L.tileLayer(CM_URL, {attribution: CM_ATTR, styleId: 997, detectRetina: true}).addTo(map);
       L.tileLayer(OSM_URL, {attribution: OSM_ATTRIB, detectRetina: true}).addTo(map);
+      L.control.scale().addTo(map);
 
       var polylinePoints = [
         {% for event in events %}
