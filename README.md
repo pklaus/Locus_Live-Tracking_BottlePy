@@ -3,9 +3,6 @@
 This is a web api based on bottle.py to store location
 information generated using Locus Map Pro Live-Tracking.
 
-Up to now this project is not quite finished or polished
-but it does work already.
-
 You can run the `./app.py` file in this project and
 set up Locus on your Android phone to POST to the URL
 <http://example.com:8080/api/event> where example.com
@@ -16,7 +13,7 @@ the URL `/api/events`.
 ### Locus' Live-Tracking Feature
 
 More information on the Live-Tracking feature of Locus Map Pro can be found on
-[its documentation web page](http://docs.locusmap.eu/doku.php/manual:live_tracking).
+[its documentation web page](http://docs.locusmap.eu/doku.php?id=manual:user_guide:functions:live_tracking).
 
 ### Alternatives
 
@@ -28,7 +25,7 @@ More information on the Live-Tracking feature of Locus Map Pro can be found on
 
 ### Requirements
 
-This web app runs on Python 3.3, [Bottle][] with [Jinja2][] and [CherryPy][].
+This web app runs on Python 3.3+, [Bottle][] with [Jinja2][] and [CherryPy][].
 Also it includes a version of [FileDict][].
 
 [Bottle]: http://bottlepy.org
